@@ -1,0 +1,336 @@
+Person 0 wants to go from floor 7 to floor 49
+Elevator 0 is moving from floor 0 to floor 1
+Elevator 0 is moving from floor 1 to floor 2
+Elevator 0 is moving from floor 2 to floor 3
+Elevator 0 is moving from floor 3 to floor 4
+Elevator 0 is moving from floor 4 to floor 5
+Elevator 0 is moving from floor 5 to floor 6
+Person 1 wants to go from floor 23 to floor 8
+Elevator 1 is moving from floor 0 to floor 1
+Elevator 0 is moving from floor 6 to floor 7
+Elevator 1 is moving from floor 1 to floor 2
+Person 0 enters elevator 0 on floor 7
+Elevator 0 is moving from floor 7 to floor 8
+Elevator 1 is moving from floor 2 to floor 3
+Elevator 0 is moving from floor 8 to floor 9
+Elevator 1 is moving from floor 3 to floor 4
+Elevator 0 is moving from floor 9 to floor 10
+Elevator 1 is moving from floor 4 to floor 5
+Elevator 0 is moving from floor 10 to floor 11
+Elevator 1 is moving from floor 5 to floor 6
+Elevator 0 is moving from floor 11 to floor 12
+Elevator 1 is moving from floor 6 to floor 7
+Elevator 0 is moving from floor 12 to floor 13
+Elevator 1 is moving from floor 7 to floor 8
+Elevator 0 is moving from floor 13 to floor 14
+Elevator 1 is moving from floor 8 to floor 9
+Elevator 0 is moving from floor 14 to floor 15
+Elevator 1 is moving from floor 9 to floor 10
+Elevator 0 is moving from floor 15 to floor 16
+Elevator 1 is moving from floor 10 to floor 11
+Elevator 0 is moving from floor 16 to floor 17
+Elevator 1 is moving from floor 11 to floor 12
+Elevator 0 is moving from floor 17 to floor 18
+Elevator 1 is moving from floor 12 to floor 13
+Elevator 0 is moving from floor 18 to floor 19
+Elevator 1 is moving from floor 13 to floor 14
+Elevator 0 is moving from floor 19 to floor 20
+Elevator 1 is moving from floor 14 to floor 15
+Elevator 0 is moving from floor 20 to floor 21
+Elevator 1 is moving from floor 15 to floor 16
+Elevator 0 is moving from floor 21 to floor 22
+Elevator 1 is moving from floor 16 to floor 17
+Elevator 0 is moving from floor 22 to floor 23
+Elevator 1 is moving from floor 17 to floor 18
+Elevator 0 is moving from floor 23 to floor 24
+Elevator 1 is moving from floor 18 to floor 19
+Elevator 0 is moving from floor 24 to floor 25
+Elevator 1 is moving from floor 19 to floor 20
+Elevator 0 is moving from floor 25 to floor 26
+Elevator 1 is moving from floor 20 to floor 21
+Elevator 0 is moving from floor 26 to floor 27
+Elevator 1 is moving from floor 21 to floor 22
+Elevator 0 is moving from floor 27 to floor 28
+Elevator 1 is moving from floor 22 to floor 23
+Elevator 0 is moving from floor 28 to floor 29
+Person 1 enters elevator 1 on floor 23
+Elevator 1 is moving from floor 23 to floor 22
+Elevator 0 is moving from floor 29 to floor 30
+Elevator 1 is moving from floor 22 to floor 21
+Elevator 0 is moving from floor 30 to floor 31
+Elevator 1 is moving from floor 21 to floor 20
+Elevator 0 is moving from floor 31 to floor 32
+Elevator 1 is moving from floor 20 to floor 19
+Elevator 0 is moving from floor 32 to floor 33
+Elevator 1 is moving from floor 19 to floor 18
+Elevator 0 is moving from floor 33 to floor 34
+Elevator 1 is moving from floor 18 to floor 17
+Elevator 0 is moving from floor 34 to floor 35
+Elevator 1 is moving from floor 17 to floor 16
+Elevator 0 is moving from floor 35 to floor 36
+Elevator 1 is moving from floor 16 to floor 15
+Elevator 0 is moving from floor 36 to floor 37
+Elevator 1 is moving from floor 15 to floor 14
+Elevator 0 is moving from floor 37 to floor 38
+Elevator 1 is moving from floor 14 to floor 13
+Elevator 0 is moving from floor 38 to floor 39
+Elevator 1 is moving from floor 13 to floor 12
+Elevator 0 is moving from floor 39 to floor 40
+Elevator 1 is moving from floor 12 to floor 11
+Elevator 0 is moving from floor 40 to floor 41
+Elevator 1 is moving from floor 11 to floor 10
+Elevator 0 is moving from floor 41 to floor 42
+Elevator 1 is moving from floor 10 to floor 9
+Elevator 0 is moving from floor 42 to floor 43
+Elevator 1 is moving from floor 9 to floor 8
+Elevator 0 is moving from floor 43 to floor 44
+Person 1 exits elevator 1 on floor 8
+Elevator 0 is moving from floor 44 to floor 45
+Elevator 0 is moving from floor 45 to floor 46
+Elevator 0 is moving from floor 46 to floor 47
+Elevator 0 is moving from floor 47 to floor 48
+Elevator 0 is moving from floor 48 to floor 49
+Person 0 exits elevator 0 on floor 49
+Person 2 wants to go from floor 30 to floor 22
+Elevator 0 is moving from floor 49 to floor 48
+Elevator 0 is moving from floor 48 to floor 47
+Elevator 0 is moving from floor 47 to floor 46
+Elevator 0 is moving from floor 46 to floor 45
+Elevator 0 is moving from floor 45 to floor 44
+Elevator 0 is moving from floor 44 to floor 43
+Elevator 0 is moving from floor 43 to floor 42
+Elevator 0 is moving from floor 42 to floor 41
+Elevator 0 is moving from floor 41 to floor 40
+Elevator 0 is moving from floor 40 to floor 39
+Elevator 0 is moving from floor 39 to floor 38
+Elevator 0 is moving from floor 38 to floor 37
+Elevator 0 is moving from floor 37 to floor 36
+Elevator 0 is moving from floor 36 to floor 35
+Elevator 0 is moving from floor 35 to floor 34
+Elevator 0 is moving from floor 34 to floor 33
+Elevator 0 is moving from floor 33 to floor 32
+Elevator 0 is moving from floor 32 to floor 31
+Elevator 0 is moving from floor 31 to floor 30
+Person 2 enters elevator 0 on floor 30
+Elevator 0 is moving from floor 30 to floor 29
+Elevator 0 is moving from floor 29 to floor 28
+Elevator 0 is moving from floor 28 to floor 27
+Elevator 0 is moving from floor 27 to floor 26
+Elevator 0 is moving from floor 26 to floor 25
+Elevator 0 is moving from floor 25 to floor 24
+Elevator 0 is moving from floor 24 to floor 23
+Elevator 0 is moving from floor 23 to floor 22
+Person 2 exits elevator 0 on floor 22
+Person 3 wants to go from floor 44 to floor 28
+Elevator 1 is moving from floor 8 to floor 9
+Elevator 1 is moving from floor 9 to floor 10
+Elevator 1 is moving from floor 10 to floor 11
+Elevator 1 is moving from floor 11 to floor 12
+Elevator 1 is moving from floor 12 to floor 13
+Elevator 1 is moving from floor 13 to floor 14
+Elevator 1 is moving from floor 14 to floor 15
+Elevator 1 is moving from floor 15 to floor 16
+Elevator 1 is moving from floor 16 to floor 17
+Elevator 1 is moving from floor 17 to floor 18
+Elevator 1 is moving from floor 18 to floor 19
+Elevator 1 is moving from floor 19 to floor 20
+Elevator 1 is moving from floor 20 to floor 21
+Elevator 1 is moving from floor 21 to floor 22
+Elevator 1 is moving from floor 22 to floor 23
+Elevator 1 is moving from floor 23 to floor 24
+Elevator 1 is moving from floor 24 to floor 25
+Elevator 1 is moving from floor 25 to floor 26
+Elevator 1 is moving from floor 26 to floor 27
+Elevator 1 is moving from floor 27 to floor 28
+Elevator 1 is moving from floor 28 to floor 29
+Elevator 1 is moving from floor 29 to floor 30
+Elevator 1 is moving from floor 30 to floor 31
+Elevator 1 is moving from floor 31 to floor 32
+Elevator 1 is moving from floor 32 to floor 33
+Elevator 1 is moving from floor 33 to floor 34
+Elevator 1 is moving from floor 34 to floor 35
+Elevator 1 is moving from floor 35 to floor 36
+Elevator 1 is moving from floor 36 to floor 37
+Elevator 1 is moving from floor 37 to floor 38
+Elevator 1 is moving from floor 38 to floor 39
+Elevator 1 is moving from floor 39 to floor 40
+Elevator 1 is moving from floor 40 to floor 41
+Elevator 1 is moving from floor 41 to floor 42
+Elevator 1 is moving from floor 42 to floor 43
+Elevator 1 is moving from floor 43 to floor 44
+Person 3 enters elevator 1 on floor 44
+Elevator 1 is moving from floor 44 to floor 43
+Elevator 1 is moving from floor 43 to floor 42
+Elevator 1 is moving from floor 42 to floor 41
+Elevator 1 is moving from floor 41 to floor 40
+Elevator 1 is moving from floor 40 to floor 39
+Elevator 1 is moving from floor 39 to floor 38
+Elevator 1 is moving from floor 38 to floor 37
+Elevator 1 is moving from floor 37 to floor 36
+Elevator 1 is moving from floor 36 to floor 35
+Elevator 1 is moving from floor 35 to floor 34
+Elevator 1 is moving from floor 34 to floor 33
+Elevator 1 is moving from floor 33 to floor 32
+Elevator 1 is moving from floor 32 to floor 31
+Elevator 1 is moving from floor 31 to floor 30
+Elevator 1 is moving from floor 30 to floor 29
+Person 4 wants to go from floor 23 to floor 9
+Elevator 3 is moving from floor 0 to floor 1
+Elevator 1 is moving from floor 29 to floor 28
+Elevator 3 is moving from floor 1 to floor 2
+Person 3 exits elevator 1 on floor 28
+Elevator 3 is moving from floor 2 to floor 3
+Elevator 3 is moving from floor 3 to floor 4
+Elevator 3 is moving from floor 4 to floor 5
+Elevator 3 is moving from floor 5 to floor 6
+Elevator 3 is moving from floor 6 to floor 7
+Elevator 3 is moving from floor 7 to floor 8
+Elevator 3 is moving from floor 8 to floor 9
+Elevator 3 is moving from floor 9 to floor 10
+Elevator 3 is moving from floor 10 to floor 11
+Elevator 3 is moving from floor 11 to floor 12
+Elevator 3 is moving from floor 12 to floor 13
+Elevator 3 is moving from floor 13 to floor 14
+Elevator 3 is moving from floor 14 to floor 15
+Elevator 3 is moving from floor 15 to floor 16
+Elevator 3 is moving from floor 16 to floor 17
+Elevator 3 is moving from floor 17 to floor 18
+Elevator 3 is moving from floor 18 to floor 19
+Elevator 3 is moving from floor 19 to floor 20
+Elevator 3 is moving from floor 20 to floor 21
+Elevator 3 is moving from floor 21 to floor 22
+Elevator 3 is moving from floor 22 to floor 23
+Person 4 enters elevator 3 on floor 23
+Elevator 3 is moving from floor 23 to floor 22
+Elevator 3 is moving from floor 22 to floor 21
+Elevator 3 is moving from floor 21 to floor 20
+Elevator 3 is moving from floor 20 to floor 19
+Elevator 3 is moving from floor 19 to floor 18
+Elevator 3 is moving from floor 18 to floor 17
+Elevator 3 is moving from floor 17 to floor 16
+Elevator 3 is moving from floor 16 to floor 15
+Elevator 3 is moving from floor 15 to floor 14
+Elevator 3 is moving from floor 14 to floor 13
+Elevator 3 is moving from floor 13 to floor 12
+Elevator 3 is moving from floor 12 to floor 11
+Elevator 3 is moving from floor 11 to floor 10
+Elevator 3 is moving from floor 10 to floor 9
+Person 4 exits elevator 3 on floor 9
+Elevator 3 has finished servicing all people.
+Elevator 3 transported 1 passengers.
+Elevator 0 has finished servicing all people.
+Elevator 0 transported 2 passengers.
+Elevator 4 has finished servicing all people.
+Elevator 4 transported 0 passengers.
+Elevator 2 has finished servicing all people.
+Elevator 2 transported 0 passengers.
+Elevator 5 has finished servicing all people.
+Elevator 5 transported 0 passengers.
+Elevator 1 has finished servicing all people.
+Elevator 1 transported 2 passengers.
+Job completed!
+Total passengers serviced by all elevators: 5
+Person 0 wants to go from floor 7 to floor 49
+Elevator 0 is moving from floor 0 to floor 1
+Elevator 0 is moving from floor 1 to floor 2
+Elevator 0 is moving from floor 2 to floor 3
+Elevator 0 is moving from floor 3 to floor 4
+Elevator 0 is moving from floor 4 to floor 5
+Elevator 0 is moving from floor 5 to floor 6
+Person 1 wants to go from floor 23 to floor 8
+Elevator 0 is moving from floor 6 to floor 7
+Person 0 enters elevator 0 on floor 7
+Elevator 0 is moving from floor 7 to floor 8
+Elevator 0 is moving from floor 8 to floor 9
+Elevator 0 is moving from floor 9 to floor 10
+Elevator 0 is moving from floor 10 to floor 11
+Elevator 0 is moving from floor 11 to floor 12
+Elevator 0 is moving from floor 12 to floor 13
+Elevator 0 is moving from floor 13 to floor 14
+Elevator 0 is moving from floor 14 to floor 15
+Elevator 0 is moving from floor 15 to floor 16
+Elevator 0 is moving from floor 16 to floor 17
+Elevator 0 is moving from floor 17 to floor 18
+Elevator 0 is moving from floor 18 to floor 19
+Elevator 0 is moving from floor 19 to floor 20
+Elevator 0 is moving from floor 20 to floor 21
+Elevator 0 is moving from floor 21 to floor 22
+Elevator 0 is moving from floor 22 to floor 23
+Elevator 0 is moving from floor 23 to floor 24
+Elevator 0 is moving from floor 24 to floor 25
+Elevator 0 is moving from floor 25 to floor 26
+Elevator 0 is moving from floor 26 to floor 27
+Elevator 0 is moving from floor 27 to floor 28
+Elevator 0 is moving from floor 28 to floor 29
+Elevator 0 is moving from floor 29 to floor 30
+Elevator 0 is moving from floor 30 to floor 31
+Elevator 0 is moving from floor 31 to floor 32
+Elevator 0 is moving from floor 32 to floor 33
+Elevator 0 is moving from floor 33 to floor 34
+Elevator 0 is moving from floor 34 to floor 35
+Elevator 0 is moving from floor 35 to floor 36
+Elevator 0 is moving from floor 36 to floor 37
+Elevator 0 is moving from floor 37 to floor 38
+Elevator 0 is moving from floor 38 to floor 39
+Elevator 0 is moving from floor 39 to floor 40
+Elevator 0 is moving from floor 40 to floor 41
+Elevator 0 is moving from floor 41 to floor 42
+Elevator 0 is moving from floor 42 to floor 43
+Elevator 0 is moving from floor 43 to floor 44
+Elevator 0 is moving from floor 44 to floor 45
+Elevator 0 is moving from floor 45 to floor 46
+Elevator 0 is moving from floor 46 to floor 47
+Elevator 0 is moving from floor 47 to floor 48
+Elevator 0 is moving from floor 48 to floor 49
+Person 0 exits elevator 0 on floor 49
+Elevator 0 is moving from floor 49 to floor 48
+Elevator 0 is moving from floor 48 to floor 47
+Elevator 0 is moving from floor 47 to floor 46
+Elevator 0 is moving from floor 46 to floor 45
+Elevator 0 is moving from floor 45 to floor 44
+Elevator 0 is moving from floor 44 to floor 43
+Elevator 0 is moving from floor 43 to floor 42
+Elevator 0 is moving from floor 42 to floor 41
+Elevator 0 is moving from floor 41 to floor 40
+Elevator 0 is moving from floor 40 to floor 39
+Elevator 0 is moving from floor 39 to floor 38
+Elevator 0 is moving from floor 38 to floor 37
+Elevator 0 is moving from floor 37 to floor 36
+Elevator 0 is moving from floor 36 to floor 35
+Elevator 0 is moving from floor 35 to floor 34
+Elevator 0 is moving from floor 34 to floor 33
+Elevator 0 is moving from floor 33 to floor 32
+Elevator 0 is moving from floor 32 to floor 31
+Elevator 0 is moving from floor 31 to floor 30
+Elevator 0 is moving from floor 30 to floor 29
+Elevator 0 is moving from floor 29 to floor 28
+Elevator 0 is moving from floor 28 to floor 27
+Elevator 0 is moving from floor 27 to floor 26
+Elevator 0 is moving from floor 26 to floor 25
+Elevator 0 is moving from floor 25 to floor 24
+Elevator 0 is moving from floor 24 to floor 23
+Person 1 enters elevator 0 on floor 23
+Elevator 0 is moving from floor 23 to floor 22
+Elevator 0 is moving from floor 22 to floor 21
+Elevator 0 is moving from floor 21 to floor 20
+Elevator 0 is moving from floor 20 to floor 19
+Elevator 0 is moving from floor 19 to floor 18
+Elevator 0 is moving from floor 18 to floor 17
+Elevator 0 is moving from floor 17 to floor 16
+Elevator 0 is moving from floor 16 to floor 15
+Elevator 0 is moving from floor 15 to floor 14
+Elevator 0 is moving from floor 14 to floor 13
+Elevator 0 is moving from floor 13 to floor 12
+Elevator 0 is moving from floor 12 to floor 11
+Elevator 0 is moving from floor 11 to floor 10
+Elevator 0 is moving from floor 10 to floor 9
+Elevator 0 is moving from floor 9 to floor 8
+Person 1 exits elevator 0 on floor 8
+Elevator 0 has finished servicing all people.
+Elevator 0 transported 2 passengers.
+Job completed!
+Total passengers serviced by all elevators: 2
+Person 0 wants to go from floor 7 to floor 49
+Job completed!
+Total passengers serviced by all elevators: Person 0
+1 wants to go from floor 23 to floor 8

@@ -1,0 +1,26 @@
+daxpy<double> (2.5 * x + y) actual: 3.25 7 10.75 | expected: 3.25 7.0 10.75
+axpy<int> (4 * x + y) actual: 45 85 125 | expected: 45 85 125
+axpy<long> (3 * x + y) actual: 350 660 970 | expected: 350 660 970
+axpy<long double> (1.5 * x + y) actual: 2.125 5.375 7.5 | expected: 2.125 5.375 7.5
+dgemv<double> (2*A*x + 0.5*y) actual: 13 18.5 | expected: 13.0 18.5
+gemv<int> (1*B*x + 2*y) actual: 2 8 16 | expected: 2 8 16
+dgemm<double> (0.5*M1*M2 + 2*M3) actual:
+    5.5   -0.25 
+   2.25      -2 
+| expected:
+   5.5  -0.25
+   2.25  -2
+gemm<int> (3*Q1*Q2 + 1*Q3) actual:
+  16   37 
+  19   22 
+| expected:
+  16 37
+  19 22
+gemm<long double> (1.25*L1*L2 + 0.75*L3) actual:
+  1.9375   4.4375    1.625 
+  5.6875   8.1875    6.625 
+  9.4375  11.9375   11.625 
+| expected:
+  1.9375  4.4375  1.625
+  5.6875  8.1875  6.625
+  9.4375  11.9375  11.625
