@@ -1,0 +1,9 @@
+salloc -A amath -p cpu-g2 -N 1 -n 32 --cpus-per-task=1 --mem=20G --time=01:00:00
+
+module load gcc
+
+export LD_LIBRARY_PATH=/gscratch/amath/roche-libs/lib:$LD_LIBRARY_PATH
+
+g++ -std=c++17 -O3 p1.cpp -o blas_perf -I/gscratch/amath/roche-libs/include -L/gscratch/amath/roche-libs/lib -lopenblas
+
+./blas_perf > blas_perf.csv
