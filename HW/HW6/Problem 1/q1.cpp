@@ -7,18 +7,18 @@
 #include <mutex>
 #include <thread>
 
-inline double integrand(double x) {
-    double fp = 1.0/x - x/4.0;
-    return std::sqrt(1.0 + fp*fp);
+inline long double integrand(long double x) {
+    long double fp = 1.0L/x - x/4.0L;
+    return std::sqrt(1.0L + fp*fp);
 }
 
-void worker(double a, double b, uint64_t start_i, uint64_t end_i,
-            uint64_t n, double &partial_sum) {
-    double dx = (b-a) / double(n);
-    double sum = 0.0;
+void worker(long double a, long double b, uint64_t start_i, uint64_t end_i,
+            uint64_t n, long double &partial_sum) {
+    long double dx = (b-a) / static_cast<long double>(n);
+    long double sum = 0.0L;
     // Midpoint Riemann
     for (uint64_t i = start_i; i < end_i; ++i) {
-        double x = a + (i + 0.5) * dx;
+        long double x = a + (i + 0.5L) * dx;
         sum += integrand(x);
     }
     partial_sum = sum * dx;
@@ -33,9 +33,9 @@ int main(int argc, char *argv[]) {
     int num_threads = std::stoi(argv[1]);
     uint64_t n = std::stoull(argv[2]);
 
-    const double a = 1.0, b = 6.0;
+    const long double a = 1.0L, b = 6.0L;
     std::vector<std::thread> threads;
-    std::vector<double> partials(num_threads, 0.0);
+    std::vector<long double> partials(num_threads, 0.0L);
     std::vector<uint64_t> starts(num_threads), ends(num_threads);
 
     uint64_t base = n / num_threads;
@@ -59,12 +59,12 @@ int main(int argc, char *argv[]) {
 
     auto end_time = std::chrono::high_resolution_clock::now();
 
-    double total_sum = 0.0;
-    for (double p : partials) {
+    long double total_sum = 0.0L;
+    for (long double p : partials) {
         total_sum += p;
     }
 
     double seconds = std::chrono::duration_cast<std::chrono::duration<double>>(end_time - start_time).count();
-    std::cout << seconds << "," << std::setprecision(10) << total_sum << std::endl;
+    std::cout << seconds << "," << std::setprecision(20) << total_sum << std::endl;
     return 0;
 }

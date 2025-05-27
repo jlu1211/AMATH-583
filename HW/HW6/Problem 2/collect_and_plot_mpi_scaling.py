@@ -3,7 +3,7 @@
 
 import subprocess
 import csv
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 # --- PARAMETERS ---
 procs    = [1, 2, 4, 8, 16, 32]
@@ -20,7 +20,12 @@ with open('mpi_scaling.csv', 'w', newline='') as csvfile:
     writer.writerow(['procs', 'time_s', 'approx_length'])
     for p in procs:
         # Launch p MPI ranks
-        cmd = ["mpirun", "-np", str(p), binary, str(n_points)]
+        cmd = [
+            "mpirun",
+            "--oversubscribe",
+            "-np", str(p),
+            binary, str(n_points)
+        ]
         out = subprocess.check_output(cmd).decode().strip()
         # Expected output: "<p>,<time_s>,<approx_length>"
         _, t_str, L_str = out.split(',')

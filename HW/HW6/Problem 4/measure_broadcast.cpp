@@ -27,19 +27,19 @@ int main(int argc, char** argv) {
         // synchronize
         MPI_Barrier(MPI_COMM_WORLD);
         // time my_broadcast
-        double t0 = MPI_Wtime();
+        long double t0 = MPI_Wtime();
         my_broadcast(buffer.data(), bytes, 0, MPI_COMM_WORLD);
         MPI_Barrier(MPI_COMM_WORLD);
-        double t1 = MPI_Wtime();
-        double my_bw = bytes / (t1 - t0);
+        long double t1 = MPI_Wtime();
+        long double my_bw = bytes / (t1 - t0);
 
         // time MPI_Bcast
         MPI_Barrier(MPI_COMM_WORLD);
-        double t2 = MPI_Wtime();
+        long double t2 = MPI_Wtime();
         MPI_Bcast(buffer.data(), bytes, MPI_BYTE, 0, MPI_COMM_WORLD);
         MPI_Barrier(MPI_COMM_WORLD);
-        double t3 = MPI_Wtime();
-        double mpi_bw = bytes / (t3 - t2);
+        long double t3 = MPI_Wtime();
+        long double mpi_bw = bytes / (t3 - t2);
 
         if (rank == 0) {
             std::cout << size << ","

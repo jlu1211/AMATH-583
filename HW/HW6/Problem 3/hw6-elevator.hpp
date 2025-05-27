@@ -30,7 +30,7 @@ const int NUM_FLOORS = 50;
 const int NUM_ELEVATORS = 6;
 const int MAX_OCCUPANCY = 10;
 const int MAX_WAIT_TIME = 5000; // milliseconds
-const int TRAVEL_DELAY_MS = 50; // milliseconds
+const int TRAVEL_DELAY_MS = 0; // milliseconds
 // Shared data structures
 mutex cout_mtx; // for thread-safe cout
 mutex queue_mtx; // for thread-safe queue operations
@@ -50,7 +50,7 @@ inline void drive(int id, int &current_floor, int target_floor) {
         int next_floor = current_floor + step;
         {
             lock_guard<mutex> lock(cout_mtx);
-            cout << "Elevator " << id << " is moving from floor " << current_floor << " to floor " << next_floor << endl;
+            // cout << "Elevator " << id << " is moving from floor " << current_floor << " to floor " << next_floor << endl;
         }
         // Simulate the time to move between floors
         this_thread::sleep_for(chrono::milliseconds(TRAVEL_DELAY_MS));

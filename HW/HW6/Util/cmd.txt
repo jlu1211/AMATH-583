@@ -1,0 +1,77 @@
+Question 1:
+g++ -std=c++17 -O3 -march=native q1.cpp -o length_threads -pthread
+chmod +x length_threads
+./length_threads 4 100000000
+chmod +x plot_scaling.py
+./plot_scaling.py
+python3 plot_scaling.py
+
+Question 2:
+# Allocate an interactive SLURM session
+salloc -A amath -p cpu-g2 -N 1 -n 32 --cpus-per-task=1 --mem=20G --time=01:00:00
+
+# On the compute node:
+module load gcc/13.2.0 ompi/4.1.6-2 coenv/python/3.11.9
+
+# Compile MPI code
+mpicxx -std=c++17 -O3 length_mpi.cpp -o length_mpi
+
+# Smoke tests
+srun -n 4  ./length_mpi 100000000
+srun -n 32 ./length_mpi 100000000
+
+# Or, outside SLURM, with oversubscribe:
+mpirun --oversubscribe -np 4  ./length_mpi 100000000
+mpirun --oversubscribe -np 32 ./length_mpi 100000000
+
+# Python driver (collect & plot):
+chmod +x collect_and_plot_mpi_scaling.py
+# (you edited it to use either srun or mpirun --oversubscribe)
+./collect_and_plot_mpi_scaling.py
+
+# Batch submission approach:
+sbatch mpi_scaling.slurm
+squeue -u jlu1211
+sacct -j <JOBID> --format=JobID,State,ExitCode,Elapsed
+
+Question 3:
+# You compiled and ran your elevator driver:
+g++ -std=c++17 -O3 hw6-elevator.cpp -o hw6-elevator -pthread
+./hw6-elevator 5 > elevator_log.csv
+
+Question 4:
+# Upload headers & source via sftp:
+sftp jlu1211@klone.hyak.uw.edu
+  put my_broadcast.hpp
+  put measure_broadcast.cpp
+  exit
+
+# On Hyak compute node:
+salloc -A amath -p cpu-g2 -N 1 -n 32 --cpus-per-task=1 --mem=20G --time=00:15:00
+module load gcc/13.2.0 ompi/4.1.6-2
+
+# Compile & run bandwidth tests:
+mpicxx -std=c++17 -O3 measure_broadcast.cpp -o measure_broadcast
+mpirun -np 4  ./measure_broadcast > bandwidth_4proc.csv
+mpirun -np 32 ./measure_broadcast > bandwidth_32proc.csv
+
+# Plot with Python:
+cat > plot_broadcast.py << 'EOF'
+… (plot_broadcast.py source) …
+EOF
+python3 plot_broadcast.py
+
+# Copy results back locally:
+scp jlu1211@klone.hyak.uw.edu:~/bandwidth_4proc.csv  ~/Downloads/
+scp jlu1211@klone.hyak.uw.edu:~/bandwidth_32proc.csv ~/Downloads/
+scp jlu1211@klone.hyak.uw.edu:~/broadcast_bandwidth.png ~/Downloads/
+
+File Transfer & Environment Commands:
+ssh jlu1211@klone.hyak.uw.edu
+scp jlu1211@klone.hyak.uw.edu:/path/to/file ~/Downloads/
+sftp jlu1211@klone.hyak.uw.edu
+  put <local> <remote>
+  ls
+  exit
+
+
