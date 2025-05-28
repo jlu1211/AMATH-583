@@ -32,17 +32,19 @@ scp jlu1211@klone.hyak.uw.edu:~/zgesv_errors.csv ~/Downloads
 
 module load openblas    # for cblas_dgemm
 module load cuda        # for nvcc & cuBLAS
+module load gcc
+export LD_LIBRARY_PATH=/gscratch/amath/roche-libs/lib:$LD_LIBRARY_PATH
 
-# grab 1 GPU on the GPU partition
-srun --gres=gpu:1 -p gpu --time=00:30:00 --pty bash
-
-# inside that shell, compile & run:
-nvcc -std=c++14 \
-    zgemm_compare_openblas_cublas.cpp \
-    -lcublas -lcudart \
-    -lopenblas \
-    -o zgemm_compare
-
-./zgemm_compare > gflops_vs_n.txt
+| Step               | Command                                                                                                                      |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| Set lib paths      | `export PATH_TO_KR_LIBS=/gscratch/amath/roche-libs`                                                                          |
+| Add to LD\_LIBRARY | `export LD_LIBRARY_PATH=$PATH_TO_KR_LIBS/lib:$LD_LIBRARY_PATH`                                                               |
+| Compile            | `nvcc -std=c++14 -O3 p3.cpp -I$PATH_TO_KR_LIBS/include -L$PATH_TO_KR_LIBS/lib -lcublas -lcudart -lopenblas -o zgemm_compare` |
+| Run                | `./zgemm_compare > gflops_vs_n.txt`                                                                                          |
 
 ############### Problem 4 ###############
+
+module load gcc cuda
+nvcc -std=c++14 -O3 p4.cpp -o gpu_copy_bandwidth
+./gpu_copy_bandwidth > copy_bandwidth.csv
+scp jlu1211@klone.hyak.uw.edu:~/copy_bandwidth.csv ~/Downloads
