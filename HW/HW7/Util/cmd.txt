@@ -29,21 +29,17 @@ g++ -std=c++17 -O3 p2.cpp -lopenblas -llapacke -o zgesv_q2_cblas
 scp jlu1211@klone.hyak.uw.edu:~/zgesv_errors.csv ~/Downloads
 
 ############### Problem 3 ###############
-
-module load openblas    # for cblas_dgemm
-module load cuda        # for nvcc & cuBLAS
+salloc -A amath -p gpu-rtx6k -N 1 -c 20 --mem=120G  --time=1:00:00 --gpus=2
+module load openblas
+module load cuda
 module load gcc
 export LD_LIBRARY_PATH=/gscratch/amath/roche-libs/lib:$LD_LIBRARY_PATH
 
-| Step               | Command                                                                                                                      |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-| Set lib paths      | `export PATH_TO_KR_LIBS=/gscratch/amath/roche-libs`                                                                          |
-| Add to LD\_LIBRARY | `export LD_LIBRARY_PATH=$PATH_TO_KR_LIBS/lib:$LD_LIBRARY_PATH`                                                               |
-| Compile            | `nvcc -std=c++14 -O3 p3.cpp -I$PATH_TO_KR_LIBS/include -L$PATH_TO_KR_LIBS/lib -lcublas -lcudart -lopenblas -o zgemm_compare` |
-| Run                | `./zgemm_compare > gflops_vs_n.txt`                                                                                          |
+nvcc -std=c++14 -O3 p3.cpp -I/gscratch/amath/roche-libs/include -L/gscratch/amath/roche-libs/lib -lcublas -lcudart -lopenblas -o zgemm_compare
+./zgemm_compare > gflops_vs_n.csv
 
 ############### Problem 4 ###############
-
+salloc -A amath -p gpu-rtx6k -N 1 -c 20 --mem=120G  --time=1:00:00 --gpus=2
 module load gcc cuda
 nvcc -std=c++14 -O3 p4.cpp -o gpu_copy_bandwidth
 ./gpu_copy_bandwidth > copy_bandwidth.csv

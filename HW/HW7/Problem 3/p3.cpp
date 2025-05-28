@@ -1,4 +1,3 @@
-// zgemm_compare_openblas_cublas.cpp
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -9,32 +8,31 @@
 #include <cuda_runtime.h>
 #include <cublas_v2.h>
 
-#define CHECK_CUDA(call)                                                 \
-    do {                                                                 \
-        cudaError_t err = (call);                                        \
-        if (err != cudaSuccess) {                                        \
+#define CHECK_CUDA(call) \
+    do { \
+        cudaError_t err = (call); \
+        if (err != cudaSuccess) { \
             std::cerr << "CUDA error at " << __FILE__ << ":" << __LINE__ \
-                      << " code=" << err << " \""                        \
-                      << cudaGetErrorString(err) << "\"" << std::endl;   \
-            std::exit(EXIT_FAILURE);                                     \
-        }                                                                \
+                      << " code=" << err << " \"" \
+                      << cudaGetErrorString(err) << "\"" << std::endl; \
+            std::exit(EXIT_FAILURE); \
+        } \
     } while (0)
 
-#define CHECK_CUBLAS(call)                                               \
-    do {                                                                 \
-        cublasStatus_t status = (call);                                  \
-        if (status != CUBLAS_STATUS_SUCCESS) {                           \
-            std::cerr << "cuBLAS error at " << __FILE__ << ":"           \
-                      << __LINE__ << " code=" << status << std::endl;    \
-            std::exit(EXIT_FAILURE);                                     \
-        }                                                                \
+#define CHECK_CUBLAS(call) \
+    do { \
+        cublasStatus_t status = (call); \
+        if (status != CUBLAS_STATUS_SUCCESS) { \
+            std::cerr << "cuBLAS error at " << __FILE__ << ":" \
+                      << __LINE__ << " code=" << status << std::endl; \
+            std::exit(EXIT_FAILURE); \
+        } \
     } while (0)
 
 int main() {
     const int ntrial = 3;
     const double alpha = 1.0, beta = 0.0;
 
-    // Create cuBLAS handle once
     cublasHandle_t handle;
     CHECK_CUBLAS(cublasCreate(&handle));
 
@@ -44,16 +42,13 @@ int main() {
         size_t size = size_t(n) * n;
         size_t bytes = size * sizeof(double);
 
-        // host allocations
         std::vector<double> A(size), B(size), C(size, 0.0);
-        // initialize A, B
         for (size_t i = 0; i < size; ++i) {
             A[i] = drand48();
             B[i] = drand48();
         }
 
-        // ---- OpenBLAS timing ----
-        // warm-up
+        // OpenBLAS: warm-up
         cblas_dgemm(
             CblasColMajor, CblasNoTrans, CblasNoTrans,
             n, n, n,
@@ -63,7 +58,8 @@ int main() {
             beta,
             C.data(), n
         );
-        // timed runs
+
+        // OpenBLAS timing
         auto t0 = std::chrono::high_resolution_clock::now();
         for (int rep = 0; rep < ntrial; ++rep) {
             cblas_dgemm(
@@ -80,24 +76,21 @@ int main() {
         double elapsed_cpu = std::chrono::duration<double>(t1 - t0).count() / ntrial;
         double gflops_cpu = (2.0 * double(n)*n*n) / (elapsed_cpu * 1e9);
 
-        // ---- cuBLAS timing ----
+        // Allocate GPU memory
         double *d_A = nullptr, *d_B = nullptr, *d_C = nullptr;
         CHECK_CUDA(cudaMalloc(&d_A, bytes));
         CHECK_CUDA(cudaMalloc(&d_B, bytes));
         CHECK_CUDA(cudaMalloc(&d_C, bytes));
 
-        // copy once
         CHECK_CUDA(cudaMemcpy(d_A, A.data(), bytes, cudaMemcpyHostToDevice));
         CHECK_CUDA(cudaMemcpy(d_B, B.data(), bytes, cudaMemcpyHostToDevice));
         CHECK_CUDA(cudaMemset(d_C, 0, bytes));
 
-        // events for timing
         cudaEvent_t start, stop;
         CHECK_CUDA(cudaEventCreate(&start));
         CHECK_CUDA(cudaEventCreate(&stop));
 
-        // warm-up
-        CHECK_CUDA(cudaEventRecord(start));
+        // Warm-up run
         CHECK_CUBLAS(cublasDgemm(
             handle,
             CUBLAS_OP_N, CUBLAS_OP_N,
@@ -108,10 +101,8 @@ int main() {
             &beta,
             d_C, n
         ));
-        CHECK_CUDA(cudaEventRecord(stop));
-        CHECK_CUDA(cudaEventSynchronize(stop));
 
-        // timed runs
+        // Timed loop
         CHECK_CUDA(cudaEventRecord(start));
         for (int rep = 0; rep < ntrial; ++rep) {
             CHECK_CUBLAS(cublasDgemm(
@@ -130,17 +121,15 @@ int main() {
 
         float ms = 0.0f;
         CHECK_CUDA(cudaEventElapsedTime(&ms, start, stop));
-        double elapsed_gpu = (ms / 1e3) / ntrial;            // seconds
-        double gflops_gpu = (2.0 * double(n)*n*n) / (elapsed_gpu * 1e9);
+        double elapsed_gpu = (ms / 1e3) / ntrial;
+        double gflops_gpu = (2.0 * double(n)*n*n + 2.0 * double(n)*n) / (elapsed_gpu * 1e9);
 
-        // cleanup
         cudaEventDestroy(start);
         cudaEventDestroy(stop);
         cudaFree(d_A);
         cudaFree(d_B);
         cudaFree(d_C);
 
-        // print
         std::cout
             << n << ","
             << gflops_cpu << ","
