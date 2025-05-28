@@ -5,7 +5,7 @@
 #include <iomanip>
 
 int main() {
-    const int ntrial = 3;
+    const int ntrial = 25;
     const int N_min = 2;
     const int N_max = 4096;
     const int stride = 2;
@@ -16,22 +16,29 @@ int main() {
             std::vector<double> X(N, 1.0), Y(N, 1.0);
             std::vector<double> A(N*N, 1.0), B(N*N, 1.0), C(N*N, 0.0);
 
+            // warm up
+            if (level == 1) {
+                cblas_daxpy(N, 1.0, X.data(), 1, Y.data(), 1);
+            } else if (level == 2) {
+                cblas_dgemv(CblasColMajor, CblasNoTrans, N, N, 1.0, A.data(), N, B.data(), 1, 0.0, C.data(), 1);
+            } else if (level == 3) {
+                cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans, N, N, N, 1.0, A.data(), N, B.data(), N, 0.0, C.data(), N);
+            }
+
+            // measure time
             auto start = std::chrono::high_resolution_clock::now();
             for (int i = 0; i < ntrial; ++i) {
                 if (level == 1) {
-                    // Level 1: Vector addition (Y = Y + X)
                     cblas_daxpy(N, 1.0, X.data(), 1, Y.data(), 1);
                 } else if (level == 2) {
-                    // Level 2: Matrix-vector multiplication (C = A*B)
                     cblas_dgemv(CblasColMajor, CblasNoTrans, N, N, 1.0, A.data(), N, B.data(), 1, 0.0, C.data(), 1);
                 } else if (level == 3) {
-                    // Level 3: Matrix-matrix multiplication (C = A*B)
                     cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans, N, N, N, 1.0, A.data(), N, B.data(), N, 0.0, C.data(), N);
                 }
             }
             auto end = std::chrono::high_resolution_clock::now();
-            double time_ms = std::chrono::duration<double, std::milli>(end - start).count();
-            double avg_time_ms = time_ms / ntrial;
+            double time_s = std::chrono::duration<double>(end - start).count();
+            double avg_time_s = time_s / ntrial;
             double flops;
             if (level == 1) {
                 // DAXPY: 2N flops (N additions and N multiplications)
@@ -43,9 +50,8 @@ int main() {
                 // DGEMM: 2N³ flops (N³ multiplications and N³ additions)
                 flops = 2.0 * N * N * N;
             }
-            
-            double MLOPS = (flops / avg_time_ms) * 1e-3; // Convert to millions of operations per second
-            std::cout << level << "," << N << "," << std::fixed << std::setprecision(3) << MLOPS << "\n";
+            double MFLOPS = (flops / avg_time_s) * 1e-6; // Convert to millions of operations per second
+            std::cout << level << "," << N << "," << std::fixed << std::setprecision(5) << MFLOPS << "\n";
         }
     }
     return 0;

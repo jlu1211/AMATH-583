@@ -18,7 +18,7 @@ for level in sorted(df['level'].unique()):
 
 # Set log scale for both axes since the data spans multiple orders of magnitude
 plt.xscale('log', base=2)
-plt.yscale('log')
+# plt.yscale('log')
 
 # Add labels and title
 plt.xlabel('Matrix Size (N)')

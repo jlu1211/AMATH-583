@@ -1,3 +1,4 @@
+############### Problem 1 ###############
 salloc -A amath -p cpu-g2 -N 1 -n 32 --cpus-per-task=1 --mem=20G --time=01:00:00
 
 module load gcc
@@ -7,3 +8,41 @@ export LD_LIBRARY_PATH=/gscratch/amath/roche-libs/lib:$LD_LIBRARY_PATH
 g++ -std=c++17 -O3 p1.cpp -o blas_perf -I/gscratch/amath/roche-libs/include -L/gscratch/amath/roche-libs/lib -lopenblas
 
 ./blas_perf > blas_perf.csv
+
+scp jlu1211@klone.hyak.uw.edu:~/blas_perf.csv ~/Downloads
+
+############### Problem 2 ###############
+module load gcc
+export LD_LIBRARY_PATH=/gscratch/amath/roche-libs/lib:$LD_LIBRARY_PATH
+
+g++ -std=c++17 -O3 p2.cpp -I/gscratch/amath/roche-libs/include -L/gscratch/amath/roche-libs/lib -lopenblas -o zgesv_errors
+
+g++ -std=c++17 -c -I/gscratch/amath/roche-libs/include p2.cpp
+g++ -std=c++17 -O3 -o zgesv zgesv.o -L/gscratch/amath/roche-libs/lib -lopenblas
+
+./zgesv_errors > zgesv_errors.csv
+
+g++ -std=c++17 -O3 p2.cpp -lopenblas -llapacke -o zgesv_q2_cblas
+./zgesv_q2_cblas > q2_data.csv
+
+
+scp jlu1211@klone.hyak.uw.edu:~/zgesv_errors.csv ~/Downloads
+
+############### Problem 3 ###############
+
+module load openblas    # for cblas_dgemm
+module load cuda        # for nvcc & cuBLAS
+
+# grab 1 GPU on the GPU partition
+srun --gres=gpu:1 -p gpu --time=00:30:00 --pty bash
+
+# inside that shell, compile & run:
+nvcc -std=c++14 \
+    zgemm_compare_openblas_cublas.cpp \
+    -lcublas -lcudart \
+    -lopenblas \
+    -o zgemm_compare
+
+./zgemm_compare > gflops_vs_n.txt
+
+############### Problem 4 ###############
