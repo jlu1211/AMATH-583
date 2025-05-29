@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Load the CSV file
 df = pd.read_csv("gflops_vs_n.csv")
@@ -14,12 +15,12 @@ plt.figure(figsize=(10, 6))
 plt.plot(n, openblas, 'o-', label="OpenBLAS (CPU)")
 plt.plot(n, cublas, 's--', label="cuBLAS (GPU)")
 
-# Log-log axes
+# Log x-axis and y-axis
 plt.xscale('log', base=2)
 plt.yscale('log')
 plt.xticks(n, rotation=45)
 plt.xlabel("Matrix size n (log₂ scale)")
-plt.ylabel("GFLOP/s (log scale)")
+plt.ylabel("GFLOPS")
 plt.title("GEMM Performance Comparison: OpenBLAS vs cuBLAS (Double Precision)")
 plt.grid(True, which='both', linestyle='--', alpha=0.6)
 plt.legend()

@@ -42,7 +42,7 @@ int main() {
         size_t size = size_t(n) * n;
         size_t bytes = size * sizeof(double);
 
-        std::vector<double> A(size), B(size), C(size, 0.0);
+        std::vector<double> A(size, 1.0), B(size, 1.0), C(size, 0.0);
         for (size_t i = 0; i < size; ++i) {
             A[i] = drand48();
             B[i] = drand48();
@@ -74,17 +74,17 @@ int main() {
         }
         auto t1 = std::chrono::high_resolution_clock::now();
         double elapsed_cpu = std::chrono::duration<double>(t1 - t0).count() / ntrial;
-        double gflops_cpu = (2.0 * double(n)*n*n) / (elapsed_cpu * 1e9);
+        double gflops_cpu = (2.0 * double(n)*n*n + 2.0 * double(n)*n) / (elapsed_cpu * 1e9);
 
         // Allocate GPU memory
-        double *d_A = nullptr, *d_B = nullptr, *d_C = nullptr;
+        double *d_A, *d_B, *d_C;
         CHECK_CUDA(cudaMalloc(&d_A, bytes));
         CHECK_CUDA(cudaMalloc(&d_B, bytes));
         CHECK_CUDA(cudaMalloc(&d_C, bytes));
 
         CHECK_CUDA(cudaMemcpy(d_A, A.data(), bytes, cudaMemcpyHostToDevice));
         CHECK_CUDA(cudaMemcpy(d_B, B.data(), bytes, cudaMemcpyHostToDevice));
-        CHECK_CUDA(cudaMemset(d_C, 0, bytes));
+        CHECK_CUDA(cudaMemcpy(d_C, C.data(), bytes, cudaMemcpyHostToDevice));
 
         cudaEvent_t start, stop;
         CHECK_CUDA(cudaEventCreate(&start));
@@ -103,8 +103,9 @@ int main() {
         ));
 
         // Timed loop
-        CHECK_CUDA(cudaEventRecord(start));
         for (int rep = 0; rep < ntrial; ++rep) {
+            CHECK_CUDA(cudaMemcpy(d_C, C.data(), bytes, cudaMemcpyHostToDevice));
+            CHECK_CUDA(cudaEventRecord(start, 0));
             CHECK_CUBLAS(cublasDgemm(
                 handle,
                 CUBLAS_OP_N, CUBLAS_OP_N,
@@ -115,9 +116,9 @@ int main() {
                 &beta,
                 d_C, n
             ));
+            CHECK_CUDA(cudaEventRecord(stop, 0));
+            CHECK_CUDA(cudaEventSynchronize(stop));
         }
-        CHECK_CUDA(cudaEventRecord(stop));
-        CHECK_CUDA(cudaEventSynchronize(stop));
 
         float ms = 0.0f;
         CHECK_CUDA(cudaEventElapsedTime(&ms, start, stop));
