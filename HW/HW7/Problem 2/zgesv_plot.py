@@ -10,14 +10,14 @@ def main():
 
     # Create plot
     plt.figure(figsize=(8,6))
-    plt.plot(df['n'], np.log(df['l2norm_residual']), marker='o', label='l2norm_residual')
-    plt.plot(df['n'], np.log(df['normalized_error']), marker='s', label='normalized_error')
+    plt.plot(df['n'], df['l2norm_residual'], marker='o', label='l2norm_residual')
+    plt.plot(df['n'], df['normalized_error'], marker='s', label='normalized_error')
 
     # Logarithmic x-axis (base 2) since n doubles each time
     plt.xscale('log', base=2)
-    # plt.yscale('log', base=math.e)  # Logarithmic y-axis
+    plt.yscale('log', base=10)
     plt.xlabel('Matrix dimension n')
-    plt.ylabel('log base e(Error)')
+    plt.ylabel('Error (log base 10)')
     plt.title('Residual & Normalized Error of LAPACKE_zgesv vs N')
     plt.grid(which='both', linestyle='--', alpha=0.5)
     plt.legend()
