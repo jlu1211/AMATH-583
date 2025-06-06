@@ -1,0 +1,43 @@
+######################### CPU #########################
+
+# 1. Allocate a CPU‐only node:
+salloc -A amath -p cpu-g2 -N 1 -n 1 -c 16 --mem=16G --time=00:30:00
+
+# 2. Inside that node’s shell:
+module load fftw
+module load gcc
+
+# 3. Compile:
+g++ -std=c++14 -O3 main.cpp -lfftw3 -lpthread -o main
+
+# 4. Run:
+./main > fftw_only_results.csv
+
+# 5. Download the results:
+scp jlu1211@klone.hyak.uw.edu:~/fftw_only_results.csv ~/Downloads
+
+# 6. Plot the results:
+python plot_fft_comparison.py
+
+######################### GPU #########################
+
+# 1. Allocate a GPU node:
+salloc -A amath -p gpu-rtx6k -N 1 -n 1 -c 16 --gres=gpu:1 --mem=16G --time=00:30:00
+
+# 2. Inside that node’s shell:
+module load cuda
+module load gcc
+
+# 3. Compile:
+nvcc -std=c++14 -O3 main.cu -lcufft -lcudart -o main
+
+# 4. Run:
+./main > cufft_only_results.csv
+
+# 5. Download the results:
+scp jlu1211@klone.hyak.uw.edu:~/cufft_only_results.csv ~/Downloads
+
+# 6. Plot the results:
+python plot_fft_comparison.py
+
+
